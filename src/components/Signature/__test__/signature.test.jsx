@@ -1,10 +1,10 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import Signature from '..';
+import App from '../../../App';
 
-test('Signature renders', () => {
+test('Application is rendered', () => {
   const renderer = new ShallowRenderer();
-  renderer.render(<Signature />);
+  renderer.render(<App />);
   const result = renderer.getRenderOutput();
   expect(result).toMatchSnapshot();
 });
