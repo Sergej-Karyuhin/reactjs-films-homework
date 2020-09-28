@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Signature renders 1`] = `
+<h1
+  className="signature"
+>
+  Name:
+  Serge
+</h1>
+`;
