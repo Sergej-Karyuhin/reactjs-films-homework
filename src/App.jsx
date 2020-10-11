@@ -3,7 +3,7 @@ import Signature from './components/Signature';
 
 const App = () => (
   <div>
-    <Signature name="Serge RSS" />
+    <Signature name="Serge" />
   </div>
 );
 
