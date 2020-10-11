@@ -8,11 +8,6 @@ import WatchButton from '../../components/WatchButton';
 import InfoButton from '../../components/InfoButton';
 import Description from '../../components/Description';
 
-const info =
-     `There are growing dangers in the wizarding world of 1926 New York.
-      Something mysterious is leaving a path of destruction in the streets,
-      threatening to expose the wizarding`;
-
 const MovieDetails = () => (
   <section className={styles.wrapper}>
 
@@ -25,10 +20,7 @@ const MovieDetails = () => (
         <InfoButton />
       </div>
     </section>
-
-
-
-
+    
   </section>
 );
 
