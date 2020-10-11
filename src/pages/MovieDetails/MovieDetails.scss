@@ -1,9 +1,9 @@
 .wrapper {
   height: 600px;
+  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url('../../assets/images/movie-details-page-BG.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5) ), url('../../assets/images/movie-details-page-BG.jpg');
 
   .main {
     width: 90%;
@@ -27,5 +27,4 @@
       }
     }
   }
-
 }
