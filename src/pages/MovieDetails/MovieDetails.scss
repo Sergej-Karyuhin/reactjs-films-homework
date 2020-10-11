@@ -1,17 +1,30 @@
 .wrapper {
   height: 600px;
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5) ), url('../../assets/images/movie-details-page-BG.jpg');
 
-  .description {
-    margin: 0 0 30px 30px;
-  }
-
-  .buttons {
+  .main {
+    width: 90%;
     display: flex;
+    justify-content: space-between;
+    margin: 300px auto 0;
 
-    .watchButton {
-      margin-right: 10px;
+    .genresAndDuration {
+      display: flex;
+    }
+
+    .description {
+      margin: 0 0 30px 30px;
+    }
+
+    .buttons {
+      display: flex;
+
+      .watchButton {
+        margin-right: 10px;
+      }
     }
   }
 
