@@ -1,0 +1,9 @@
+.stars {
+  display: flex;
+  
+  .star {
+    width: 36px;
+    height: 37px;
+    background-image: url("../../assets/images/star.png");
+  }
+}
