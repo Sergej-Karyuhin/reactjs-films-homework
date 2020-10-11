@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 10px;
+
+  .title {
+    font-size: 34px;
+    text-transform: uppercase;
+  }
+}

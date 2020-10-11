@@ -1,9 +1,11 @@
 import React from 'react';
-import Signature from './components/Signature';
+import MovieDetails from './pages/MovieDetails';
+
+import appStyles from './styles.scss';
 
 const App = () => (
-  <div>
-    <Signature name="Serge" />
+  <div className={appStyles}>
+    <MovieDetails />
   </div>
 );
 
