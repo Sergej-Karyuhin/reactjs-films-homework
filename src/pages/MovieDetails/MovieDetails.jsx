@@ -7,11 +7,16 @@ import Header from '../../components/Header';
 import WatchButton from '../../components/WatchButton';
 import InfoButton from '../../components/InfoButton';
 import Description from '../../components/Description';
+import MovieName from '../../components/MovieName';
+import MovieGenres from '../../components/MovieGenres';
 
 const MovieDetails = () => (
   <section className={styles.wrapper}>
 
     <Header />
+
+    <MovieName movieName={movie[0].name} />
+    <MovieGenres movieGenres={movie[0].genres} />
 
     <section>
       <div className={styles.description}><Description info={movie[0].description} /></div>
@@ -20,7 +25,7 @@ const MovieDetails = () => (
         <InfoButton />
       </div>
     </section>
-    
+
   </section>
 );
 
