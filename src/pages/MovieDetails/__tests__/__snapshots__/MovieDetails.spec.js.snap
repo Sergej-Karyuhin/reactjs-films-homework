@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section
+  className="wrapper"
+>
+  <header
+    className="header"
+  >
+    <h1
+      className="title"
+    >
+      films
+    </h1>
+    <section
+      className="wrapper"
+    >
+      <input
+        className="input"
+        type="search"
+      />
+      <div
+        className="img"
+      />
+    </section>
+  </header>
+  <main
+    className="main"
+  >
+    <section>
+      <h3
+        className="title"
+      >
+        The Jungle Book
+      </h3>
+      <div
+        className="genresAndDuration"
+      >
+        <div>
+          <ul
+            className="genres"
+          >
+            <li
+              className="genre"
+            >
+              Adventure
+            </li>
+            <li
+              className="genre"
+            >
+              Drama
+            </li>
+            <li
+              className="genre"
+            >
+              Family
+            </li>
+            <li
+              className="genre"
+            >
+              Fantasy
+            </li>
+          </ul>
+        </div>
+        <p>
+          |
+        </p>
+        <div>
+          <p
+            className="duration"
+          >
+            1h 46m
+          </p>
+        </div>
+      </div>
+      <ul
+        className="stars"
+      >
+        <li
+          className="star"
+        />
+        <li
+          className="star"
+        />
+        <li
+          className="star"
+        />
+        <li
+          className="star"
+        />
+        <li
+          className="star"
+        />
+        <div
+          className="rating"
+        >
+          4.8
+        </div>
+      </ul>
+    </section>
+    <section>
+      <div
+        className="description"
+      >
+        <div
+          className="wrapper"
+        >
+          <p>
+            There are growing dangers in the wizarding world of 1926 New York. Something mysterious is leaving a path of destruction in the streets, threatening to expose the wizarding
+          </p>
+        </div>
+      </div>
+      <div
+        className="buttons"
+      >
+        <div
+          className="watchButton"
+        >
+          <button
+            className="button"
+          >
+            Watch Now
+          </button>
+        </div>
+        <button
+          className="button"
+        >
+          View Info
+        </button>
+      </div>
+    </section>
+  </main>
+</section>
+`;
