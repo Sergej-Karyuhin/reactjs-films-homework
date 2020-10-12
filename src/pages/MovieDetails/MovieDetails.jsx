@@ -22,7 +22,7 @@ const MovieDetails = () => (
         <MovieName movieName={movie[0].name} />
         <div className={styles.genresAndDuration}>
           <div><MovieGenres movieGenres={movie[0].genres} /></div>
-          <p> | </p>
+          <p>|</p>
           <div><MovieDuration movieDuration={movie[0].duration} /></div>
         </div>
         <MovieRating movieRating={movie[0].rating} />
