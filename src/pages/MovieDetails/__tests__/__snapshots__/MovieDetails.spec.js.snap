@@ -24,8 +24,8 @@ exports[`renders correctly 1`] = `
       />
     </section>
   </header>
-  <main
-    className="main"
+  <div
+    className="movie"
   >
     <section>
       <h3
@@ -34,38 +34,38 @@ exports[`renders correctly 1`] = `
         The Jungle Book
       </h3>
       <div
-        className="genresAndDuration"
+        className="wrapper"
       >
-        <div>
-          <ul
-            className="genres"
+        <ul
+          className="genres"
+        >
+          <li
+            className="genre"
           >
-            <li
-              className="genre"
-            >
-              Adventure
-            </li>
-            <li
-              className="genre"
-            >
-              Drama
-            </li>
-            <li
-              className="genre"
-            >
-              Family
-            </li>
-            <li
-              className="genre"
-            >
-              Fantasy
-            </li>
-          </ul>
-        </div>
+            Adventure
+          </li>
+          <li
+            className="genre"
+          >
+            Drama
+          </li>
+          <li
+            className="genre"
+          >
+            Family
+          </li>
+          <li
+            className="genre"
+          >
+            Fantasy
+          </li>
+        </ul>
         <p>
           |
         </p>
-        <div>
+        <div
+          className="duration"
+        >
           <p
             className="duration"
           >
@@ -73,62 +73,62 @@ exports[`renders correctly 1`] = `
           </p>
         </div>
       </div>
-      <ul
-        className="stars"
+      <div
+        className="rating"
       >
-        <li
-          className="star"
-        />
-        <li
-          className="star"
-        />
-        <li
-          className="star"
-        />
-        <li
-          className="star"
-        />
-        <li
-          className="star"
-        />
-        <div
-          className="rating"
+        <ul
+          className="stars"
         >
-          4.8
-        </div>
-      </ul>
+          <li
+            className="star"
+          />
+          <li
+            className="star"
+          />
+          <li
+            className="star"
+          />
+          <li
+            className="star"
+          />
+          <li
+            className="star"
+          />
+          <div
+            className="rating"
+          >
+            4.8
+          </div>
+        </ul>
+      </div>
     </section>
     <section>
       <div
-        className="description"
+        className="wrapper"
       >
-        <div
-          className="wrapper"
-        >
-          <p>
-            There are growing dangers in the wizarding world of 1926 New York. Something mysterious is leaving a path of destruction in the streets, threatening to expose the wizarding
-          </p>
-        </div>
+        <p>
+          There are growing dangers in the wizarding world of 1926 New York. Something mysterious is leaving a path of destruction in the streets, threatening to expose the wizarding
+        </p>
       </div>
       <div
-        className="buttons"
+        className="wrapper"
       >
+        <button
+          className="button watch"
+        >
+          Watch Now
+        </button>
         <div
-          className="watchButton"
+          className="info"
         >
           <button
-            className="button"
+            className="button view"
           >
-            Watch Now
+            View Info
           </button>
         </div>
-        <button
-          className="button"
-        >
-          View Info
-        </button>
       </div>
     </section>
-  </main>
+  </div>
 </section>
 `;
