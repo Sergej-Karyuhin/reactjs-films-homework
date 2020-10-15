@@ -16,7 +16,7 @@ const MovieGenres = ({ movieGenres }) => (
 );
 
 MovieGenres.propTypes = {
-  movieGenres: PropTypes.arrayOf(PropTypes.string),
+  movieGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default MovieGenres;

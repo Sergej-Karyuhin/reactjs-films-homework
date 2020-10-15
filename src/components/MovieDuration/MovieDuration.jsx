@@ -10,7 +10,7 @@ const MovieDuration = ({ movieDuration }) => (
 );
 
 MovieDuration.propTypes = {
-  movieDuration: PropTypes.string,
+  movieDuration: PropTypes.string.isRequired,
 };
 
 export default MovieDuration;
