@@ -8,7 +8,7 @@
     "del-build": "rm -rf build",
     "build": "npm run del-build && webpack --env production",
     "lint": "eslint ./src/ && stylelint ./src/**/*.scss",
-    "test": "jest --config ./config/jest/jest.config.js --coverage",
+    "test": "jest --config ./config/jest/jest.config.js --coverage --colors",
     "prod": "npm run build && node server.js"
   },
   "husky": {

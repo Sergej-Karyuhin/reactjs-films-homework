@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  width: 250px;
+  height: 40px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+
+  .input {
+    width: 85%;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+  }
+
+  .img {
+    position: relative;
+    margin-left: 10px;
+    top: 5px;
+    right: 5px;
+    width: 29px;
+    height: 29px;
+    background-image: url("../../assets/images/search-icon.png");
+  }
+}

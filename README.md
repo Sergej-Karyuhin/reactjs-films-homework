@@ -1,1 +1,1 @@
-### [Part-1 demo](https://serge-js-lab-reactjs-films-homework.netlify.app/)
+### [Part-2 demo](https://reactjs-films-homework-part-2-serge.netlify.app/)
