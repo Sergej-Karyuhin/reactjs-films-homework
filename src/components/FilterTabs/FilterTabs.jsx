@@ -47,4 +47,10 @@ const FilterTabs = (props) => {
   );
 };
 
+FilterTabs.propTypes = {
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  fetchByCategory: PropTypes.func.isRequired,
+  condition: PropTypes.string.isRequired,
+};
+
 export default FilterTabs;

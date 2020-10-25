@@ -13,4 +13,12 @@ const WatchNowWindow = ({ film: { id }, fetchTrailer, switchViewInfo }) => (
   </div>
 );
 
+WatchNowWindow.propTypes = {
+  film: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+  fetchTrailer: PropTypes.func.isRequired,
+  switchViewInfo: PropTypes.func.isRequired,
+};
+
 export default WatchNowWindow;

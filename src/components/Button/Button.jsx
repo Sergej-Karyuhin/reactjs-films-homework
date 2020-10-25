@@ -13,4 +13,10 @@ const Button = ({ children, color, onClick }) => (
   </button>
 );
 
+Button.propTypes = {
+  children: PropTypes.string.isRequired,
+  color: PropTypes.oneOf(['primary', 'secondary']).isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
 export default Button;

@@ -56,4 +56,14 @@ class MovieItem extends Component {
   }
 }
 
+MovieItem.propTypes = {
+  film: PropTypes.shape({
+    poster: PropTypes.string,
+    title: PropTypes.string,
+    genres: PropTypes.string,
+    rating: PropTypes.number,
+  }).isRequired,
+  fetchTrailer: PropTypes.func.isRequired,
+};
+
 export default MovieItem;

@@ -46,4 +46,10 @@ class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  setMoviesCondition: PropTypes.func.isRequired,
+  fetchMovies: PropTypes.func.isRequired,
+  condition: PropTypes.string.isRequired,
+};
+
 export default Header;

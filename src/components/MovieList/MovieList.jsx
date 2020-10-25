@@ -19,4 +19,9 @@ const MovieList = ({ movies, fetchTrailer }) => {
   );
 };
 
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchTrailer: PropTypes.func.isRequired,
+};
+
 export default MovieList;

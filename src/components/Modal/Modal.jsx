@@ -50,6 +50,17 @@ const Modal = ({ trailer, removeTrailerInfo, trailerIsLoading, trailerError }) =
   );
 };
 
+Modal.propTypes = {
+  trailer: PropTypes.shape({
+    key: PropTypes.string,
+  }),
+  removeTrailerInfo: PropTypes.func.isRequired,
+  trailerIsLoading: PropTypes.bool.isRequired,
+  trailerError: PropTypes.shape({
+    message: PropTypes.string,
+  }),
+};
+
 Modal.defaultProps = {
   trailer: null,
   trailerError: null,

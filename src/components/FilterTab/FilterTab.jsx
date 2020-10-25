@@ -19,4 +19,11 @@ const FilterTab = ({
   );
 };
 
+FilterTab.propTypes = {
+  children: PropTypes.string.isRequired,
+  fetchByCategory: PropTypes.func.isRequired,
+  condition: PropTypes.string.isRequired,
+  filter: PropTypes.string.isRequired,
+};
+
 export default FilterTab;

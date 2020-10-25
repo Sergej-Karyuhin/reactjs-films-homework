@@ -27,4 +27,17 @@ const ViewInfoWindow = ({
   </div>
 );
 
+ViewInfoWindow.propTypes = {
+  film: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genres: PropTypes.string,
+    rating: PropTypes.number,
+    overview: PropTypes.string,
+    poster: PropTypes.string,
+  }).isRequired,
+  switchViewInfo: PropTypes.func.isRequired,
+  fetchTrailer: PropTypes.func.isRequired,
+};
+
 export default ViewInfoWindow;

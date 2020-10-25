@@ -82,4 +82,31 @@ class MoviesSection extends Component {
   }
 }
 
+MoviesSection.propTypes = {
+  condition: PropTypes.string.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  error: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+  }),
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+
+  trailer: PropTypes.shape({}),
+  trailerIsLoading: PropTypes.bool.isRequired,
+  trailerError: PropTypes.shape({}),
+  isModalOpened: PropTypes.bool.isRequired,
+
+  setMoviesCondition: PropTypes.func.isRequired,
+  fetchMovies: PropTypes.func.isRequired,
+
+  fetchTrailer: PropTypes.func.isRequired,
+  removeTrailerInfo: PropTypes.func.isRequired,
+};
+
+MoviesSection.defaultProps = {
+  error: null,
+  trailer: null,
+  trailerError: null,
+};
+
 export default MoviesSection;
