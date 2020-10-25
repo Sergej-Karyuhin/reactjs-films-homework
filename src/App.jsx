@@ -1,11 +1,10 @@
 import React from 'react';
-import MovieDetails from './pages/MovieDetails';
-
+import MainPage from './pages/MainPage';
 import appStyles from './styles/styles.scss';
 
 const App = () => (
   <div className={appStyles}>
-    <MovieDetails />
+    <MainPage />
   </div>
 );
 

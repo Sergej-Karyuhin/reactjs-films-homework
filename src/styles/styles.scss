@@ -8,8 +8,10 @@
 body {
   max-width: 1280px;
   margin: 0 auto;
+  overflow-x: hidden;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   color: #fff;
+  background-color: #131313;
 }
 
 ul {

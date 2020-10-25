@@ -11,11 +11,7 @@
     "test": "jest --config ./config/jest/jest.config.js --coverage --colors",
     "prod": "npm run build && node server.js"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run lint"
-    }
-  },
+  "husky": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sergej-Karyuhin/reactjs-films-homework.git"
@@ -27,6 +23,7 @@
   },
   "homepage": "https://github.com/Sergej-Karyuhin/reactjs-films-homework#readme",
   "dependencies": {
+    "@babel/runtime": "^7.12.1",
     "express": "^4.17.1",
     "open": "^7.3.0",
     "react": "^16.13.1",
@@ -40,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "babel-core": "^7.0.0-bridge.0",
