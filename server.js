@@ -8,7 +8,7 @@ const open = require('open');
 const app = express();
 const compiler = webpack(config);
 
-const PORT = 3100;
+const PORT = 3000;
 
 if (process.env.NODE_ENV === 'development') {
   app.use(
