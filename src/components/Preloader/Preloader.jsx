@@ -2,21 +2,12 @@ import React from 'react';
 
 import styles from './Preloader.scss';
 
+const LINES = new Array(12).fill().map(line => Math.round(Math.random() * 9999));
+
 const Preloader = () => (
   <div className={styles.container}>
     <div className={styles.lds}>
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
-      <div />
+      {LINES.map(line => <div key={ line }/>)}
     </div>
   </div>
 );

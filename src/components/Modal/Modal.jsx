@@ -2,31 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Preloader from '../Preloader';
+import ErrorBoundary from '../_ErrorBoundary';
 
 import styles from './Modal.scss';
 
 const Modal = ({ trailer, removeTrailerInfo, trailerIsLoading, trailerError }) => {
-  if (trailerIsLoading) {
-    return (
+  return (
+    <div>
+
+    {trailerIsLoading ?
       <div className={styles.container}>
         <Preloader />
       </div>
-    );
-  }
 
-  if (trailerError) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.message}>
-          {`Error! ${trailerError.message}`}
-        </div>
-        <button className={styles.close} type="button" onClick={removeTrailerInfo}>&#215;</button>
-      </div>
-    );
-  }
+      : trailer ?
 
-  if (trailer) {
-    return (
+      <ErrorBoundary>
       <div className={styles.container}>
         <iframe
           className={styles.iframe}
@@ -37,17 +28,19 @@ const Modal = ({ trailer, removeTrailerInfo, trailerIsLoading, trailerError }) =
         />
         <button className={styles.close} type="button" onClick={removeTrailerInfo}>&#215;</button>
       </div>
-    );
-  }
+      </ErrorBoundary>
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.message}>
-        Trailer not found
+      :
+
+      <div className={styles.container}>
+        <div className={styles.message}>
+          Trailer not found
+        </div>
+        <button className={styles.close} type="button" onClick={removeTrailerInfo}>&#215;</button>
       </div>
-      <button className={styles.close} type="button" onClick={removeTrailerInfo}>&#215;</button>
+    }
     </div>
-  );
+  )
 };
 
 Modal.propTypes = {

@@ -10,19 +10,6 @@ const FilterTabs = (props) => {
   const defaultValue = Number(condition) ? condition : 'Genre';
   const className = Number(condition) ? `${styles.select} ${styles.active}` : styles.select;
 
-  let options;
-
-  if (genres) {
-    options = genres.map((genre, index) => (
-      <option
-        key={genre}
-        value={index}
-      >
-        {genre}
-      </option>
-    ));
-  }
-
   return (
     <div className={styles.container}>
       <FilterTab fetchByCategory={fetchByCategory} condition={condition} filter="Trending">
@@ -41,7 +28,16 @@ const FilterTabs = (props) => {
         onChange={(e) => fetchByCategory(e.target.value)}
       >
         <option value="Genre" disabled hidden>Genre</option>
-        {options}
+        {(genres && genres.length)
+          ? genres.map((genre, index) => (
+            <option
+              key={genre}
+              value={index}
+            >
+              {genre}
+            </option>
+          ))
+          : null}
       </select>
     </div>
   );

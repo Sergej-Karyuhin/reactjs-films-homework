@@ -6,14 +6,12 @@ import MovieItem from '../MovieItem';
 import styles from './MovieList.scss';
 
 const MovieList = ({ movies, fetchTrailer }) => {
-  const movieItems = movies.map((film) => (
-    <MovieItem key={film.id} film={film} fetchTrailer={fetchTrailer} />
-  ));
-
   return (
     <div className={styles.container}>
-      {movieItems.length
-        ? movieItems
+      {movies.length
+        ? movies.map(film =>
+          <MovieItem key={film.id} film={film} fetchTrailer={fetchTrailer} />
+        )
         : <p className={styles.noResults}>No results</p>}
     </div>
   );
