@@ -7,8 +7,9 @@ import styles from './WatchNowWindow.scss';
 
 const WatchNowWindow = ({ film: { id }, fetchTrailer, switchViewInfo }) => (
   <div className={styles.container}>
-    <button className={styles.watch} type="button" onClick={() => fetchTrailer(id)}>&#9658;</button>
-    <p className={styles.watchNow}>Watch Now</p>
+    <div className={styles.watchNow}>
+      <Button onClick={() => fetchTrailer(id)} color="primary">Watch Now</Button>
+    </div>
     <Button onClick={switchViewInfo} color="secondary">View Info</Button>
   </div>
 );
