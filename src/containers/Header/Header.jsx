@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import SearchInput from '../../components/SearchInput';
@@ -6,33 +6,44 @@ import SearchInput from '../../components/SearchInput';
 import styles from './Header.scss';
 
 
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(
+    () => {
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    },
+    [value]
+  );
+
+  return debouncedValue;
+}
+
+
 const Header = ({ setMoviesCondition, fetchMovies, condition }) => {
-  let [timerId, setTimer] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const inputValue = useDebounce(searchTerm, 500);
 
-  const getSearch = (event) => {
-    const inputValue = event.target.value;
-    if (timerId) {
-      clearInterval(timerId);
-    }
-    timerId = setTimeout(
-      async () => {
-        if (inputValue !== '') {
-          await setMoviesCondition('Search');
-          fetchMovies(condition, inputValue);
-        }
-        else {
-          await setMoviesCondition('Trending');
-          fetchMovies(condition);
-        }
-      }, 500);
-  }
-
-  useState(timerId);
+  useEffect(
+    () => {
+      if (inputValue) {
+        setMoviesCondition('Search');
+        fetchMovies(condition, inputValue);
+      }
+    },
+    [inputValue]
+  );
 
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>films</h1>
-      <SearchInput getSearch={() => getSearch(event)} />
+      <SearchInput setSearchTerm={setSearchTerm} />
     </header>
   );
 }
