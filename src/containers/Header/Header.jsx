@@ -2,28 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import SearchInput from '../../components/SearchInput';
-
+import useDebounce from './useDebounce';
 import styles from './Header.scss';
-
-
-function useDebounce(value, delay) {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(
-    () => {
-      const handler = setTimeout(() => {
-        setDebouncedValue(value);
-      }, delay);
-
-      return () => {
-        clearTimeout(handler);
-      };
-    },
-    [value]
-  );
-
-  return debouncedValue;
-}
 
 
 const Header = ({ setMoviesCondition, fetchMovies, condition }) => {
