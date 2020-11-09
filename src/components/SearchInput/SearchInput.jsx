@@ -3,21 +3,19 @@ import styles from './SearchInput.scss';
 
 import PropTypes from 'prop-types';
 
-const SearchInput = ({ getSearch }) => (
+const SearchInput = ({ setSearchTerm }) => (
   <section className={styles.wrapper}>
     <input
       className={styles.input}
       type="search"
-      onChange={(e) => {
-        getSearch(e);
-      }}
+      onChange={e => setSearchTerm(e.target.value)}
     />
     <div className={styles.img}></div>
   </section>
 );
 
 SearchInput.propTypes = {
-  getSearch: PropTypes.func.isRequired,
+  setSearchTerm: PropTypes.func.isRequired,
 };
 
 export default SearchInput;

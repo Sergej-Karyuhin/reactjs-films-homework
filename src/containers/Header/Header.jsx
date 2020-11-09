@@ -1,50 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import SearchInput from '../../components/SearchInput';
-
+import useDebounce from './useDebounce';
 import styles from './Header.scss';
 
-class Header extends Component {
-  state = {
-    timerId: null,
-  };
 
-  getSearch = (event) => {
-    const inputValue = event.target.value;
-    const { setMoviesCondition, fetchMovies } = this.props;
-    let { timerId } = this.state;
+const Header = ({ setMoviesCondition, fetchMovies, condition }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const inputValue = useDebounce(searchTerm, 500);
 
-    if (timerId) {
-      clearInterval(timerId);
-    }
+  useEffect(
+    () => {
+      if (inputValue) {
+        setMoviesCondition('Search');
+        fetchMovies(condition, inputValue);
+      }
+    },
+    [inputValue]
+  );
 
-    timerId = setTimeout(
-      async () => {
-        if (inputValue !== '') {
-          await setMoviesCondition('Search');
-          const { condition } = this.props;
-          fetchMovies(condition, inputValue);
-        }
-        else {
-          await setMoviesCondition('Trending');
-          const { condition } = this.props;
-          fetchMovies(condition);
-        }
-      }, 500);
-
-    this.setState({ timerId });
-  }
-
-  render() {
-    return (
-      <header className={styles.header}>
-        <h1 className={styles.title}>films</h1>
-        <SearchInput getSearch={this.getSearch} />
-      </header>
-    );
-  }
+  return (
+    <header className={styles.header}>
+      <h1 className={styles.title}>films</h1>
+      <SearchInput setSearchTerm={setSearchTerm} />
+    </header>
+  );
 }
+
 
 Header.propTypes = {
   setMoviesCondition: PropTypes.func.isRequired,
