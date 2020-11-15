@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Preloader from '../../Preloader';
-import ErrorBoundary from '../../_ErrorBoundary';
+import ErrorBoundary from '../../ErrorBoundary';
 
 import styles from './Modal.scss';
 
