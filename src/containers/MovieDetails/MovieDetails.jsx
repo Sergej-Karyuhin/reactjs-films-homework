@@ -67,4 +67,26 @@ class MovieDetails extends Component {
   }
 }
 
+MovieDetails.propTypes = {
+  fetchDetails: PropTypes.func.isRequired,
+  fetchTrailer: PropTypes.func.isRequired,
+  error: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+  }),
+  isLoading: PropTypes.bool.isRequired,
+  details: PropTypes.shape({
+    background: PropTypes.string,
+    rating: PropTypes.number,
+    overview: PropTypes.string,
+  }),
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
+};
+
+MovieDetails.defaultProps = {
+  details: null,
+  error: null,
+};
+
 export default withRouter(MovieDetails);
