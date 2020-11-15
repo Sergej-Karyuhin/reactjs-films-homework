@@ -11,7 +11,7 @@ import styles from './MoviesSection.scss';
 class MoviesSection extends Component {
   async componentDidMount() {
     const { location: { search } } = this.props;
-    const { fetchMovies, setMoviesCondition, condition } = this.props;
+    const { fetchMovies, setMoviesCondition } = this.props;
     const searchParams = new URLSearchParams(search);
 
     const inputValue = searchParams.get('search');
@@ -26,6 +26,7 @@ class MoviesSection extends Component {
       await setMoviesCondition('Search');
     }
 
+    const { condition } = this.props;
     fetchMovies(condition, inputValue);
   }
 
