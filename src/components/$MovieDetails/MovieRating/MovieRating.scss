@@ -1,0 +1,21 @@
+.stars {
+  display: flex;
+
+  .star {
+    width: 36px;
+    height: 37px;
+    margin-right: 5px;
+    background-image: url("../../../assets/images/star.png");
+  }
+
+  .rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 37px;
+    border: 2px solid #09ade3;
+    border-radius: 5px;
+    font-size: 24px;
+  }
+}

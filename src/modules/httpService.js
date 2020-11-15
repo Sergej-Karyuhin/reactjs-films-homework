@@ -26,6 +26,15 @@ export default class HTTPService {
       viewInfo: false,
     });
 
+    transformDetailsData = (details) => ({
+      background: details.backdrop_path ? `https://image.tmdb.org/t/p/w1280${details.backdrop_path}` : notFound,
+      title: details.title,
+      rating: details.vote_average,
+      overview: details.overview,
+      genres: details.genres.reduce((acc, genre) => `${acc}${genre.name}, `, '').slice(0, -2),
+      duration: `${Math.round(details.runtime / 60)}h ${details.runtime % 60}m`,
+    });
+
     handleResult = (res, genres) => {
       const amount = 16;
       const { results } = res;
@@ -35,6 +44,11 @@ export default class HTTPService {
       return results.map((movie) => this.transformMovieData(movie, genres));
     }
 
+
+    getDetails = async (id) => {
+      const res = await this.getResource(`movie/${id}?api_key=${this.key}&${this.lang}`);
+      return this.transformDetailsData(res);
+    }
 
     getGenres = async () => {
       const res = await this.getResource(`genre/movie/list?api_key=${this.key}&${this.lang}`);
