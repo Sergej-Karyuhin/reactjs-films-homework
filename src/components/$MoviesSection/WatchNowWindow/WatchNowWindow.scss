@@ -13,6 +13,10 @@
   background-color: rgba($color: #000, $alpha: 0.7);
   box-sizing: border-box;
 
+  .viewInfo {
+    margin-top: 20px;
+  }
+
   &:hover {
     display: flex;
   }

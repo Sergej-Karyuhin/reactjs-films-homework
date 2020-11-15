@@ -13,12 +13,14 @@ const WatchNowWindow = ({ switchViewInfo, film: { id }, fetchTrailer }) => (
       Watch Now
     </Button>
 
+    <div className={styles.viewInfo}>
     <Button
       onClick={switchViewInfo}
       color="secondary"
     >
       View Info
     </Button>
+    </div>
   </div>
 );
 
