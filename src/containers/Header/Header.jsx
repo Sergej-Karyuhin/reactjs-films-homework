@@ -1,11 +1,14 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types'
 
 import SearchInput from '../../components/$Header/SearchInput';
 import styles from './Header.scss';
 
-const Header = ({ setMoviesCondition, condition, history, location }) => {
+const Header = ({ setMoviesCondition, condition }) => {
+  let history = useHistory();
+  let location = useLocation();
+
   const getSearch = async (event) => {
     const inputValue = event.target.value;
     if (inputValue !== '') {
@@ -34,18 +37,6 @@ const Header = ({ setMoviesCondition, condition, history, location }) => {
 Header.propTypes = {
   setMoviesCondition: PropTypes.func.isRequired,
   condition: PropTypes.string.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
-  location: PropTypes.shape({
-    search: PropTypes.string,
-  }),
 };
 
-Header.defaultProps = {
-  location: PropTypes.shape({
-    search: null,
-  }),
-};
-
-export default withRouter(Header);
+export default Header;
