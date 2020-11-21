@@ -13,7 +13,7 @@ const MovieAction = ({ description, fetchTrailer, id }) => {
       <div className={styles.buttonsContainer}>
         <Button
           color="primary"
-          onClick={() => fetchTrailer(id)}
+          onClick={fetchTrailer}
         >
           Watch Now
         </Button>
