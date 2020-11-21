@@ -1,6 +1,7 @@
+import debounceAction from 'debounce-action';
+
 import HTTPService from '../httpService';
 const httpService = new HTTPService();
-
 
 export const SET_MOVIES_CONDITION = 'SET_MOVIES_CONDITION';
 export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
@@ -77,3 +78,5 @@ export function fetchMovies(condition, inputValue) {
       }));
   };
 }
+
+export const fetchMoviesDebounced = debounceAction(fetchMovies, 500);

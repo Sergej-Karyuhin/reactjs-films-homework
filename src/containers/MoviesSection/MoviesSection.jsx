@@ -1,41 +1,74 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import MovieList from '../../components/MovieList';
-import Modal from '../../components/Modal';
+import MovieList from '../../components/$MoviesSection/MovieList';
+import Modal from '../../components/$MoviesSection/Modal';
+import FilterTabs from '../../components/$MoviesSection/FilterTabs';
 import Preloader from '../../components/Preloader';
-import FilterTabs from '../../components/FilterTabs';
-
 import styles from './MoviesSection.scss';
 
 class MoviesSection extends Component {
-  componentDidMount() {
-    const { condition, fetchMovies } = this.props;
-    fetchMovies(condition);
+  async componentDidMount() {
+    const { location: { search } } = this.props;
+    const { fetchMovies, setMoviesCondition } = this.props;
+    const searchParams = new URLSearchParams(search);
+
+    const inputValue = searchParams.get('search');
+    const filter = searchParams.get('filter');
+    const genreId = searchParams.get('genreId');
+
+    if (filter || genreId) {
+      await setMoviesCondition(filter || genreId);
+    }
+
+    if (inputValue) {
+      await setMoviesCondition('Search');
+    }
+
+    const { condition } = this.props;
+    fetchMovies(condition, inputValue);
   }
 
-  fetchByCategory = async (category) => {
-    const { setMoviesCondition } = this.props;
-    await setMoviesCondition(category);
-    const { condition, genres, fetchMovies } = this.props;
-    fetchMovies(condition, genres);
+
+  fetchByFilter = async (filter) => {
+    const { setMoviesCondition, genres, fetchMovies } = this.props;
+    fetchMovies(filter, genres);
+    await setMoviesCondition(filter);
   };
+
+
+  componentDidUpdate(prevProps) {
+    const { location: { search } } = this.props;
+    const { condition, fetchMoviesDebounced } = this.props;
+
+    if (search !== prevProps.location.search) {
+      const searchParams = new URLSearchParams(search);
+
+      const inputValue = searchParams.get('search');
+      const filter = searchParams.get('filter');
+      const genreId = searchParams.get('genreId');
+
+      if (inputValue) {
+        fetchMoviesDebounced(condition, inputValue);
+      }
+
+      if (filter) {
+        this.fetchByFilter(filter);
+      }
+
+      if (genreId) {
+        this.fetchByFilter(genreId);
+      }
+    }
+  }
+
 
   render() {
     const {
-      condition,
-      movies,
-      isLoading,
-      error,
-      genres,
-
-      trailer,
-      trailerIsLoading,
-      trailerError,
-      isModalOpened,
-
-      fetchTrailer,
-      removeTrailerInfo,
+      error, isLoading, isModalOpened, trailer, removeTrailerInfo,
+      trailerIsLoading, trailerError, genres, condition, movies,
+      fetchTrailer, removeDetailsInfo, setMoviesCondition, history,
     } = this.props;
 
     if (error) {
@@ -48,10 +81,9 @@ class MoviesSection extends Component {
       return (
         <div className={styles.container}>
           <FilterTabs
-            name="Tabs"
             genres={genres}
-            fetchByCategory={this.fetchByCategory}
             condition={condition}
+            onFilterChange={history.push}
           />
           <Preloader />
         </div>
@@ -60,14 +92,6 @@ class MoviesSection extends Component {
 
     return (
       <section className={styles.container}>
-        <FilterTabs
-          name="Tabs"
-          genres={genres}
-          fetchByCategory={this.fetchByCategory}
-          condition={condition}
-        />
-        <MovieList movies={movies} fetchTrailer={fetchTrailer} />
-
         {isModalOpened ? (
           <Modal
             trailer={trailer}
@@ -76,37 +100,58 @@ class MoviesSection extends Component {
             trailerError={trailerError}
           />
         )
-        : null }
+          : null }
+        <FilterTabs
+          genres={genres}
+          condition={condition}
+          onFilterChange={history.push}
+        />
+        <MovieList
+          movies={movies}
+          fetchTrailer={fetchTrailer}
+          removeDetailsInfo={removeDetailsInfo}
+          setMoviesCondition={setMoviesCondition}
+          onClick={history.push}
+        />
       </section>
     );
   }
 }
 
+
 MoviesSection.propTypes = {
-  condition: PropTypes.string.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isLoading: PropTypes.bool.isRequired,
   error: PropTypes.shape({
     message: PropTypes.string.isRequired,
   }),
+  isLoading: PropTypes.bool.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-
-  trailer: PropTypes.shape({}),
-  trailerIsLoading: PropTypes.bool.isRequired,
-  trailerError: PropTypes.shape({}),
-  isModalOpened: PropTypes.bool.isRequired,
-
-  setMoviesCondition: PropTypes.func.isRequired,
+  condition: PropTypes.string.isRequired,
   fetchMovies: PropTypes.func.isRequired,
-
-  fetchTrailer: PropTypes.func.isRequired,
+  fetchMoviesDebounced: PropTypes.func.isRequired,
   removeTrailerInfo: PropTypes.func.isRequired,
+  trailer: PropTypes.shape({}),
+  trailerError: PropTypes.shape({}),
+  trailerIsLoading: PropTypes.bool.isRequired,
+  fetchTrailer: PropTypes.func.isRequired,
+  isModalOpened: PropTypes.bool.isRequired,
+  setMoviesCondition: PropTypes.func.isRequired,
+  removeDetailsInfo: PropTypes.func.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 MoviesSection.defaultProps = {
   error: null,
   trailer: null,
   trailerError: null,
+  location: PropTypes.shape({
+    search: null,
+  }),
 };
 
-export default MoviesSection;
+export default withRouter(MoviesSection);
