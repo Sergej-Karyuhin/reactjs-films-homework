@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import MovieInfo from '../../components/$MovieDetails/MovieInfo';
@@ -8,64 +8,56 @@ import MovieAction from '../../components/$MovieDetails/MovieAction';
 import Preloader from '../../components/Preloader';
 import styles from './MovieDetails.scss';
 
-class MovieDetails extends Component {
-  componentDidMount() {
-    const { location: { pathname }, fetchDetails } = this.props;
-    const id = pathname.replace(/\/details\//, '');
+
+const MovieDetails = ({ fetchDetails, fetchTrailer, error, isLoading, details }) => {
+  let location = useLocation();
+
+  const { pathname } = location;
+  const id = pathname.replace(/\/details\//, '');
+
+  useEffect(() => {
     fetchDetails(id);
-  }
+  }, [pathname]);
 
-  componentDidUpdate(prevProps) {
-    const { location: { pathname }, fetchDetails } = this.props;
-    if (pathname !== prevProps.location.pathname) {
-      const id = pathname.replace(/\/details\//, '');
-      fetchDetails(id);
-    }
-  }
-
-  render() {
-    const { fetchTrailer, details, error } = this.props;
-    const { location: { pathname } } = this.props;
-    const id = pathname.replace(/\/details\//, '');
-
-    if (error) {
-      return (
-        <section
-          className={styles.container}
-        >
-          {`Error! ${error.message}`}
-        </section>
-      );
-    }
-
-    if (details) {
-      const { background, rating, overview, ...info } = details;
-      const img = { backgroundImage: `url(${background})` };
-      return (
-        <section
-          className={styles.container}
-          style={img}
-        >
-          <div className={styles.info}>
-            <MovieInfo info={info} />
-            <MovieRating rating={rating} />
-          </div>
-          <MovieAction
-            description={overview}
-            id={id}
-            fetchTrailer={fetchTrailer}
-          />
-        </section>
-      );
-    }
-
+  if (error) {
     return (
-      <section className={styles.container}>
-        <Preloader />
+      <section
+        className={styles.container}
+      >
+        {`Error! ${error.message}`}
       </section>
     );
   }
+
+  if (details) {
+    const { background, rating, overview, ...info } = details;
+    const img = { backgroundImage: `url(${background})` };
+    return (
+      <section
+        className={styles.container}
+        style={img}
+      >
+        <div className={styles.info}>
+          <MovieInfo info={info} />
+          <MovieRating rating={rating} />
+        </div>
+        <MovieAction
+          description={overview}
+          id={id}
+          fetchTrailer={fetchTrailer}
+        />
+      </section>
+    );
+  }
+
+  return (
+    <section className={styles.container}>
+      <Preloader />
+    </section>
+  );
+
 }
+
 
 MovieDetails.propTypes = {
   fetchDetails: PropTypes.func.isRequired,
@@ -79,14 +71,11 @@ MovieDetails.propTypes = {
     rating: PropTypes.number,
     overview: PropTypes.string,
   }),
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }).isRequired,
 };
 
 MovieDetails.defaultProps = {
-  details: null,
   error: null,
+  details: null,
 };
 
-export default withRouter(MovieDetails);
+export default MovieDetails;
